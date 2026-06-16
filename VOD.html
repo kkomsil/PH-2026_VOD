@@ -221,8 +221,7 @@ function submitDirect(){
 
   function onSuccess(){
     submitted=true;
-    showDone('<b>✅ 제출 완료 / Submitted</b>소중한 답변 감사합니다. 동의 내용이 정상적으로 접수되었습니다.<br>Thank you. Your consent has been recorded.');
-    lockForm();
+    renderComplete();
   }
   function onFail(){
     btn.disabled=false; btn.textContent='제출하기 / Submit';
@@ -256,6 +255,21 @@ function copyResult(){
   } else { selectBox(box); try{document.execCommand('copy');}catch(e){} ok(); }
 }
 function selectBox(box){ var r=document.createRange(); r.selectNodeContents(box); var s=getSelection(); s.removeAllRanges(); s.addRange(r); }
+function renderComplete(){
+  window.scrollTo(0,0);
+  app.innerHTML =
+    '<header><h1>PH Korea 2026 · 발표 VOD 녹화·사용 동의</h1>'
+    + '<div class="sub">Consent for Video Recording &amp; Use (VOD) of Your Lecture</div>'
+    + '<div class="meta">대한폐고혈압학회 학술대회 · 2026.6.26(금)–27(토) · COEX Magok, Seoul<br>'
+    + 'Korean Society of Pulmonary Hypertension Annual Meeting</div></header>'
+    + '<div class="card" style="text-align:center;padding:44px 24px">'
+    + '<div style="font-size:56px;line-height:1;margin-bottom:14px">✅</div>'
+    + '<h2 style="color:var(--navy);margin:0 0 8px;font-size:22px">제출이 완료되었습니다</h2>'
+    + '<div style="color:var(--muted);font-size:14px;margin-bottom:20px">Your consent has been submitted.</div>'
+    + '<p style="font-size:14.5px;margin:0 0 10px"><b>' + esc(sp.name) + '</b> 님, 소중한 답변 감사합니다.<br>동의 내용이 정상적으로 접수되었습니다.</p>'
+    + '<p style="font-size:13px;color:var(--muted);margin:0">Thank you, ' + esc(sp.name) + '. Your response has been recorded.<br>이 창은 닫으셔도 됩니다. / You may now close this window.</p>'
+    + '</div>';
+}
 function showDone(html){
   var dn=document.getElementById('done'); dn.innerHTML=html; dn.style.display='block';
   window.scrollTo({top:dn.offsetTop-80,behavior:'smooth'});

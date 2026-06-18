@@ -143,8 +143,6 @@ function renderForm(sp){
     + 'Below are your lecture(s). Please indicate your consent <b>for each lecture</b>, then click <b>Submit</b> below.</div>'
 
     + '<form id="frm">' + lecHtml
-    + '<div class="card"><div class="field"><label>회신용 이메일 / Your email (선택 Optional)</label>'
-    + '<input type="email" id="email" placeholder="name@example.com"></div></div>'
     + '<div class="err" id="err"></div>'
     + '<div class="done" id="done"></div>'
     + '<div class="actions">' + submitBlock
@@ -178,7 +176,7 @@ function getData(){
     items.push({code:l.code, session:l.session, title:l.title, consent:sel.value});
   }
   err.style.display='none';
-  return { email: document.getElementById('email').value.trim(), items: items };
+  return { email: '', items: items };
 }
 function buildText(d){
   var L=[];
@@ -186,7 +184,6 @@ function buildText(d){
   L.push('성함 Name: ' + sp.name);
   L.push('소속 Affiliation: ' + (sp.aff||''));
   L.push('국가 Country: ' + (sp.country||''));
-  L.push('회신 이메일 Email: ' + (d.email||'-'));
   L.push('제출 시각 Submitted: ' + new Date().toLocaleString());
   L.push('');
   d.items.forEach(function(it,i){

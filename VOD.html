@@ -218,8 +218,12 @@ function submitDirect(){
 
   function onSuccess(){
     submitted=true;
-    showDone('<b>✅ 제출 완료 / Submitted</b>소중한 답변 감사합니다. 동의 내용이 정상적으로 접수되었습니다.<br>Thank you. Your consent has been recorded.');
-    lockForm();
+    app.innerHTML = '<div class="card" style="text-align:center;padding:44px 24px">'
+      + '<div style="font-size:44px;line-height:1;margin-bottom:10px">✅</div>'
+      + '<h2 style="color:var(--navy);margin:0 0 10px;font-size:20px">제출 완료 / Submitted</h2>'
+      + '<p style="color:var(--muted);font-size:14px;margin:0">소중한 답변 감사합니다. 동의 내용이 정상적으로 접수되었습니다.<br>'
+      + 'Thank you. Your consent has been successfully recorded.</p></div>';
+    window.scrollTo({top:0,behavior:'smooth'});
   }
   function onFail(){
     btn.disabled=false; btn.textContent='제출하기 / Submit';
